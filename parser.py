@@ -1,6 +1,6 @@
 from pdfminer.high_level import extract_text
 import requests
-import fitz  # PyMuPDF
+import fitz
 
 def pdf_to_text(file_path):
     doc = fitz.open(file_path)
@@ -39,22 +39,18 @@ from ollama import Client
 
 ollama = Client(host='http://localhost:11434') 
 def fix_json_like_output(text):
-    # Remove markdown (```json, etc.)
     text = re.sub(r"```(?:json)?", "", text)
-    # Replace single quotes with double quotes if needed
     text = text.replace("'", '"')
-    # Remove trailing commas
     text = re.sub(r",\s*}", "}", text)
     text = re.sub(r",\s*]", "]", text)
-    # Strip leading/trailing whitespace
     return text.strip()
 
 def extract_experience(resume_text):
     prompt = generate_prompt(resume_text)
 
     response = ollama.chat(model="llama3", messages=[{"role": "user", "content": prompt}]).get("message", {}).get("content", "")
-    
-    # Log the raw response
+
+#response log
     print("\n--- Raw LLaMA Output ---\n", response)
 
     try:

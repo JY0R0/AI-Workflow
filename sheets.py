@@ -11,7 +11,7 @@ def authenticate_sheets():
         with open('token_sheets.pickle', 'rb') as token:
             creds = pickle.load(token)
     if not creds or not creds.valid:
-        flow = InstalledAppFlow.from_client_secrets_file('credentials_sheets.json', SCOPES_SHEETS)
+        flow = InstalledAppFlow.from_client_secrets_file('credentials_drive.json', SCOPES_SHEETS)
         creds = flow.run_local_server(port=0)
         with open('token_sheets.pickle', 'wb') as token:
             pickle.dump(creds, token)

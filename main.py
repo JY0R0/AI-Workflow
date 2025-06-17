@@ -25,7 +25,6 @@ def main(folder_id, sheet_id):
     drive_service = authenticate_drive()
     sheet_service = authenticate_sheets()
 
-    # Add header row
     HEADER = [
         "Name",
         "Company 1", "Title 1", "Start Date 1", "End Date 1",

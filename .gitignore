@@ -1,3 +1,6 @@
-.token_drive.pickle
-.token_sheets.pickle
-.pdf
+credentials_drive.json
+credentials.json
+resume_extractor_project.zip
+token_drive.pickle
+token_sheets.pickle
+*.pdf

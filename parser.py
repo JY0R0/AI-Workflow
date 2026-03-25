@@ -25,9 +25,11 @@ Your job is to return **only valid JSON**, exactly in the following format:
 }}
 
 Rules:
-- If some values (like end_date) are missing, use null.
+- If some values (like end_date) are missing, use "PRESENT" as the end_date.
+- Avoid mixing company names and job titles. (For eg, "Software Engineer at Google" is not a valid company name, it should be "Google" or if it is mentioned like "Navana.ai / Designer", then use "Navana.ai" as the company name and "Designer" as the job title)
+- If the dates are mentioned like "JUN-JUL 2024", then use "JUN 2024" as the start_date and "JUL 2024" as the end_date.
 - Do NOT add comments or explanation.
-- Do NOT wrap JSON in markdown.
+- Do NOT wrap JSON in markdown.
 
 Resume Text:
 \"\"\"{resume_text}\"\"\"

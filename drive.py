@@ -13,7 +13,7 @@ def authenticate_drive():
             creds = pickle.load(token)
     if not creds or not creds.valid:
         flow = InstalledAppFlow.from_client_secrets_file('credentials_drive.json', SCOPES)
-        creds = flow.run_local_server(port=0)
+        creds = flow.run_local_server(port=8080)
         with open('token_drive.pickle', 'wb') as token:
             pickle.dump(creds, token)
     return build('drive', 'v3', credentials=creds)
@@ -21,7 +21,10 @@ def authenticate_drive():
 def list_pdfs_from_folder(service, folder_id):
     try:
         query = f"'{folder_id}' in parents and mimeType='application/pdf'"
-        results = service.files().list(q=query, fields="files(id, name)").execute()
+        results = service.files().list(
+            q=query,
+            fields="files(id, name, webViewLink)"
+        ).execute()
         files = results.get('files', [])
         print(f"📂 Found {len(files)} PDF(s) in folder.")
         return files

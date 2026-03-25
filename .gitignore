@@ -4,3 +4,7 @@ resume_extractor_project.zip
 token_drive.pickle
 token_sheets.pickle
 *.pdf
+error_response.txt
+IDS.txt
+main.spec
+build/
